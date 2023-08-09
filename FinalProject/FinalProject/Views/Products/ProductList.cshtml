@@ -1,0 +1,90 @@
+﻿<!-- Thêm thư viện & thay đổi mô hình để sử dụng thư viện phân trang -->
+@using PagedList.Mvc;
+@model PagedList.IPagedList<FinalProject.Models.Product>
+
+@{
+    ViewBag.Title = "Muahang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .prduct-brand button {
+        width: 80px;
+        height: 30px;
+        border-radius: 4px;
+        border: none;
+        color: var(--main-color-02);
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:active {
+        opacity: 0.7;
+    }
+
+    .btn-buy {
+        background: var(--main-color-05);
+    }
+
+    .main-item form {
+        margin-top: 20px;
+        float: left;
+    }
+
+    .main-item li {
+        list-style: none;
+        margin: 0 2px;
+        display: inline-block;
+    }
+        .main-item li:hover {
+            background-color: var(--main-color-04);
+        }
+        .main-item li a {
+            display: block;
+            padding: 8px 12px;
+            color: var(--main-color-01);
+            cursor: pointer;
+        }
+    .active {
+        background-color: var(--main-color-04);
+    }
+</style>
+<hr />
+
+    <h2 style="text-align: left; margin-top: 60px">MUA HÀNG</h2>
+
+    <div id="prduct-aoc" class="prduct-brand prduct-aoc">
+        @if (ViewBag.SelectedCategoryName != null)
+        {
+            <h3>Sản phẩm loại: @ViewBag.SelectedCategoryName</h3>
+        }
+        @foreach (var item in Model)
+        {
+            double proprice = item.Price;
+            <div class="prduct-item prduct-item-1">
+                <a href="@Url.Action("ProInfo", "Products", new { id = item.ProductID })" style="display:block; width: 260px; height: 260px; margin: 0 20px; cursor: pointer;">
+                    <img src="@Html.DisplayFor(modelItem => item.ImagePro)" alt="">
+                </a>
+                <div style="height: 20%">
+                    <p>@Html.DisplayFor(modelItem => item.NamePro)</p>
+                </div>
+                <div style="height: 10%">
+                    <p class="prduct-cost"><span>Giá tiền: </span>@proprice.ToString("#,###").Replace(',', '.')</p>
+                </div>
+                <div style="height: 50px;">
+                    <p style="height: 30px;"><a href="/ShoppingCart/AddToCart/@item.ProductID"><button class="btn-buy">Mua</button></a></p>
+                </div>
+
+            </div>
+
+        }
+    </div>
+    <br />
+    <br />
+    <!-- Thêm đoạn mã để hiển thị số trang và số trang hiện tại -->
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    <!--Control PagedListPager: mô tả mô hình với số trang là liên kết với tham số "Index" và tham số page-->
+    @Html.PagedListPager(Model, page => Url.Action("ProductList", new { SearchString = @ViewBag.search, min = ViewBag.min, max = ViewBag.max, page }))
+    <!-- Kết thúc -->
+
+
+

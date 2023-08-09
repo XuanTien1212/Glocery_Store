@@ -1,0 +1,63 @@
+﻿@model IEnumerable<FinalProject.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    td, th {
+        padding: 5px 10px;
+        border-collapse: collapse;
+        border: 2px solid lightgrey;
+    }
+
+    table {
+        margin: auto;
+        margin-top: 60px;
+        width: 500px;
+        border-collapse: collapse;
+    }
+</style>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderPro.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            Thành tiền
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        double price = item.UnitPrice;
+        decimal total = item.Quantity * (decimal)item.UnitPrice;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderPro.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @price.ToString("#,###").Replace(',', '.')
+            </td>
+            <td>
+                @total.ToString("#,###").Replace(',', '.')
+            </td>
+        </tr>
+    }
+</table>
+@foreach (var orderDetail in Model)
+{
+    <!-- Display order detail info -->
+    <td>@Html.ActionLink("View Details", "ViewOrderDetails", new { id = orderDetail.IDOrder })</td>
+}
+

@@ -1,0 +1,155 @@
+﻿@model FinalProject.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    label {
+        float: left;
+        font-size: 16px;
+    }
+
+    .form-group {
+        margin: 20px;
+        height: 20px;
+    }
+
+    input {
+        float: right;
+        box-sizing: border-box;
+    }
+
+    select {
+        float: right;
+        width: 177px;
+    }
+
+    #ImagePro {
+        width: 177px;
+    }
+</style>
+
+<hr />
+<h1 style=" margin-top: 50px">Create</h1>
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal" style="text-align: center; width: 350px; height: 400px; margin: 0 525px; padding-top: 20px;">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ProductID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NamePro, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NamePro, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NamePro, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CateID, "CateID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.CateID, (SelectList)ViewData["CateID"], "Chọn loại sản phẩm", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CateID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BrandID, "BrandID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.BrandID, (SelectList)ViewData["BrandID"], "Chọn thương hiệu", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.BrandID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImagePro)
+        <div class="col-md-10">
+            <input type="file" name="imageFile" id="imageFile" class="form-control" />
+            @Html.ValidationMessageFor(model => model.ImagePro, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DescriptionPro, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DescriptionPro, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DescriptionPro, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", @min = "1" } })
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group" style="padding: 0 115px;">
+        <div class="col-md-offset-2 col-md-10" style="text-align:center">
+            <input type="submit" value="Create" class="btn btn-default" style="width: 80px" />
+        </div>
+
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.css" rel="stylesheet" />
+
+<script>
+    Dropzone.options.imageFile = {
+        maxFilesize: 1, // Giới hạn kích thước tập tin tải lên (1 MB)
+        acceptedFiles: ".jpeg,.jpg,.png,.gif", // Các loại file cho phép tải lên
+        addRemoveLinks: true, // Hiển thị link xóa
+        dictRemoveFile: "Remove", // Văn bản link xóa
+        timeout: 5000, // Thời gian tối đa để tải lên
+        init: function () {
+            this.on("maxfilesexceeded", function (file) {
+                this.removeFile(file);
+                alert("File quá lớn. Chỉ được phép tải lên tệp tin có kích thước dưới 1MB.");
+            });
+            this.on("addedfile", function (file) {
+                // Nếu chỉ muốn tải lên một ảnh, giữ lại dòng dưới
+                if (this.files.length > 1) {
+                    this.removeFile(this.files[0]);
+                }
+            });
+        }
+    };
+</script>
+<script>
+    // Thêm sự kiện submit form
+    $(document).ready(function () {
+        $("form").submit(function (event) {
+            // Kiểm tra xem người dùng đã chọn hình ảnh chưa
+            if ($("#imageFile").get(0).files.length === 0) {
+                event.preventDefault();
+                alert("Vui lòng chọn hình ảnh");
+            }
+        });
+    });
+</script>
+
+

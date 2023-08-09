@@ -1,0 +1,104 @@
+﻿@model FinalProject.Models.OrderPro
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    dt {
+        font-size: 18px;
+        float: left;
+        height: 40px;
+        font-weight: bold;
+    }
+
+    dd {
+        font-size: 18px;
+        float: right;
+        height: 40px;
+    }
+
+    dl div {
+        width: 480px;
+        height: 40px;
+        margin: 0 460px
+    }
+
+    td, th {
+        padding: 5px 10px;
+        border-collapse: collapse;
+        border: 2px solid lightgrey;
+    }
+
+    table {
+        margin: auto;
+        width: 60%;
+        border-collapse: collapse;
+    }
+</style>
+<hr />
+<h1>Details</h1>
+
+<div>
+
+    <dl class="dl-horizontal">
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.ID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ID)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.NameCus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer.NameCus)
+            </dd>
+        </div>
+
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.AddressDelivery)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer.AddressDelivery)
+            </dd>
+        </div>
+    </dl>
+</div>
+
+
+<h4 style="color: var(--main-color-05)">Chi tiết Đơn Hàng</h4>
+<table class="table-bordered" width="400px">
+    <tr>
+        <th>Sản Phẩm</th>
+        <th>Số Lượng</th>
+        <th>Đơn Giá</th>
+        <th>Thành Tiền</th>
+        @if (Model.OrderDetails != null)
+        {
+            foreach (var item in Model.OrderDetails)
+            {
+                double total = item.Quantity * item.UnitPrice;
+            <tr>
+                <td>@(item.Product?.NamePro ?? "N/A")</td>
+                <td>@item.Quantity</td>
+                <td>@item.UnitPrice.ToString("#,###").Replace(",", ".")</td>
+                <td>@total.ToString("#,###").Replace(",", ".")</td>
+            </tr>
+        }
+    }
+        }
+    </table>
+
+
+
+
+
+

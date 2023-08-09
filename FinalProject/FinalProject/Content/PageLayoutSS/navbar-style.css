@@ -1,0 +1,125 @@
+/* NAVIGATION BAR */
+
+.bot-nav-bar {
+    overflow: hidden;
+    background-color: var(--main-color-02);
+    border-radius: 4px;
+    height: 45px;
+}
+.mega-box {
+    font-size: 15px;
+}
+    /* Định dạng link điều hướng */
+    .bot-nav-bar .mega-box {
+        float: left;
+        /* display: block; */
+        color: var(--main-color-01);
+        text-align: center;
+        padding: 14px 16px;
+        font-weight: 550;
+        border: none;
+        text-decoration: none;
+        background-color: var(--main-color-02);
+    }
+        /* Thay đổi màu liên kết khi di chuột qua */
+        .bot-nav-bar .mega-box:hover {
+            background-color: var(--main-color-01);
+            color: var(--main-color-02);
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+    .homepage a {
+        padding: 14px 16px;
+        color: var(--main-color-01);
+    }
+    .homepage .mega-box{
+        padding: 14px 0;
+        color: var(--main-color-01);
+    }
+    .bot-nav-bar .mega-box:hover a {
+        color: var(--main-color-02);
+    }
+.bot-nav-bar ul {
+    margin: 0;
+    padding: 0;
+}
+    .bot-nav-bar li {
+        list-style: none;
+    }
+
+    .bot-nav-bar li:hover .outside-box{
+        display: block;
+    }
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    width: 1400px;
+    background-color: var(--main-color-01);
+    font-size: 17px;
+    z-index: 1000;
+    border-radius: 4px;
+}
+
+.box h4 {
+    font-size: 19px;
+    margin-bottom: 18px;
+    color: var(--main-color-04);
+}
+
+.outside-box {
+    padding-top: 10px;
+    margin-top: 20px;
+    display: none;
+    position: absolute;
+    top: 160px;
+    width: 1400px;
+    box-sizing: border-box;
+}
+.menu-group {
+    margin: 30px;
+    margin-top: 0;
+    margin-right: 0;
+}
+    .menu-group li:hover {
+        opacity: 0.8;
+    }
+    .menu-group1 {
+        flex: 40%;
+    }
+        .menu-group1 li {
+            display: inline-flex;
+            width: 280px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+            .menu-group1 a {
+                color: var(--main-color-02);
+                line-height: 25px;
+            }
+    .menu-group2 {
+        flex: 25%;
+    }
+        .menu-group2 li {
+            display: inline-flex;
+            width: 280px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+            .menu-group2 a {
+                color: var(--main-color-02);
+                line-height: 25px;
+            }
+    .menu-group3 {
+        flex: 25%;
+    }
+        .menu-group3 li {
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+        }
+            .menu-group3 a{
+                color: var(--main-color-02);
+                line-height: 25px;
+            }

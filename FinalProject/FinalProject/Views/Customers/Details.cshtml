@@ -1,0 +1,90 @@
+﻿@model FinalProject.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    dt {
+        float: left;
+        height: 40px;
+        font-weight: bold;
+    }
+
+    dd {
+        float: right;
+        height: 40px;
+    }
+
+    dl div {
+        width: 480px;
+        height: 40px;
+        margin: 0 460px
+    }
+</style>
+<hr />
+<h1 style="margin: 60px 0;">Chi tiết thông tin khách hàng</h1>
+
+<div>
+
+    <dl class="dl-horizontal">
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.NameCus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NameCus)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneCus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneCus)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.EmailCus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmailCus)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.AddressDelivery)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AddressDelivery)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+        </div>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDCus }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

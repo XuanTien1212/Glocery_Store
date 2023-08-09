@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "menuPartial";
+}
+
+<style>
+    .admin-select {
+        padding: 0;
+        margin: 0;
+
+    }
+        .admin-select li {
+            float: left;
+            display: inline-block;
+            list-style: none;
+            color: var(--main-color-02);
+        }
+            .admin-select li a {
+                padding: 10px 15px;
+                text-decoration: none;
+                color: var(--main-color-01);
+            }
+            .admin-select li a:hover {
+                background: var(--main-color-01);
+                color: var(--main-color-02);
+
+            }
+</style>
+<br />
+<input type="hidden" name="chon" value="@Session["chon"]" />
+    <ul class="admin-select">
+        <li><a href="~/Products/Index">Sản phẩm</a></li>
+        <li><a href="~/Categories/Index">Loại Sản phẩm</a></li>
+        <li><a href="~/Customers/Index">Khách hàng</a></li>
+        <li><a href="~/OrderProes/Index">Đơn hàng</a></li>
+    </ul>
+<br />
+<br />
+
+

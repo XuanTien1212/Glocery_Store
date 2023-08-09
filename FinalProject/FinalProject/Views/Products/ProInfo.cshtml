@@ -1,0 +1,61 @@
+﻿@model FinalProject.Models.Product
+
+@{
+    ViewBag.Title = "ProInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .top-product {
+        display: flex;
+    }
+
+    .prduct-details-container {
+        display: flex;
+        height: 700px;
+    }
+
+    .product-center {
+        width: 500px;
+        margin-left: 30px;
+    }
+    .free-deli {
+        background: var(--main-color-04);
+        padding: 10px 0;
+        border-radius: 4px;
+        color: var(--main-color-02);
+    }
+
+    .product-center button {
+        float: left;
+        width: 100%;
+        border: none;
+        border-radius: 4px;
+        font-size: 18px;
+        padding: 12px 50px;
+        color: var(--main-color-02);
+        background-color: var(--main-color-05);
+        cursor: pointer;
+    }
+</style>
+<div class="top-product">
+    <h2 style="float:left;">@Html.DisplayFor(model => model.NamePro)</h2>
+</div>
+@{double proprice = Model.Price; }
+<div class="prduct-details-container">
+    <div class="product-image">
+        <img src="@Html.DisplayFor(model => model.ImagePro)" alt="" width="355px" height="355px">
+    </div>
+    <div class="product-center">
+        <p style="text-align: left;">
+            <span style="color: var(--main-color-05); font-weight: bold; font-size: 30px;">@proprice.ToString("#,###").Replace(',', '.') đ</span> |
+            <span><i>Giá đã bao gồm VAT</i></span>
+        </p>
+        <div class="free-deli">
+            <span>MIỄN PHÍ VẬN CHUYỂN</span>
+        </div>
+        <p>
+            <a href="/ShoppingCart/AddToCart/@Model.ProductID"><button class="btn-buy">Thêm vào giỏ hàng</button></a>
+        </p>
+    </div>
+</div>
+

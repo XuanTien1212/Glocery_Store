@@ -1,0 +1,160 @@
+﻿@model FinalProject.Models.Cart
+
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    tbody td {
+        padding: 6px 20px;
+        text-align: center;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+    th {
+        padding: 5px 0;
+    }
+    td, th {
+        border: 1px solid black;
+    }
+    .btn-paid {
+        width: 100px;
+        height: 30px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: bold;
+        background: var(--main-color-06);
+        color: var(--main-color-02);
+        cursor: pointer;
+    }
+    .btn-paid:active {
+        opacity: 0.8;
+    }
+    .cart-delete {
+        display: block;
+        padding: 5px 5px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: bold;
+        background: var(--main-color-05);
+        color: var(--main-color-02);
+        text-decoration: none;
+    }
+    .cart-delete:active {
+        opacity: .8;
+    }
+</style>
+<hr />
+<h1>Giỏ Hàng</h1>
+<p><a href="@Url.Action("ProductList", "Products")">Tiếp tục Mua hàng</a></p>
+@if (Model != null)
+{
+    <table>
+        <thead style="text-align:center; font-size:large;">
+            <tr>
+                <th>Tên Sản phẩm</th>
+                <th>Hình</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                double proprice = item._product.Price;
+                decimal total = item._quantity * (decimal)item._product.Price;
+                <tr>
+                    <td width="400">@Html.DisplayFor(model => item._product.NamePro)</td>
+                    <td><img src="@Html.DisplayFor(model => item._product.ImagePro)" alt="" width="110px" height="110px"></td>
+                    <td width="100" align="right">@proprice.ToString("#,###").Replace(',','.')</td>
+                    <td align="right">
+                        @using (Html.BeginForm("Update_Cart_Quantity", "ShoppingCart"))
+                        {
+                            <input type="hidden" value="@item._product.ProductID" name="idPro" />
+                            <input type="number" value="@item._quantity" name="cartQuantity" min="1" style="text-align:right" />
+                            <input type="submit" value="Cập nhật" />
+                            <br />
+                            if (item._quantity == 0)
+                            {
+                                <span style="font-size: 12px;">(Sản phẩm tạm hết hàng)</span>
+                            }
+                        }
+                    </td>
+                    <td width="100" align="right">@total.ToString("#,##0").Replace(',', '.')</td>
+                    <td>
+                        <a href="RemoveCart/@item._product.ProductID" class="cart-delete">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" align="center">
+                    @if (Session["UserName"] == null)
+                    {
+                        <span>(Hãy đăng ký KH nếu chưa đăng ký)</span>
+                        <a href = "@Url.Action("Create", "Customers")" class="btn btn-success">Đăng ký</a>
+                     }
+                </td>
+                <td colspan="3" style="text-align:right; font-size:x-large; color: crimson;">
+                    Tổng tiền : @Model.Total_money().ToString("#,##0").Replace(',', '.') Đồng
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <h4>-------------------THÔNG TIN ĐƠN HÀNG-------------------</h4>
+                    @using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                    {
+                        <table style="border-collapse:separate; border-spacing:5px;">
+                            <tr>
+                                <td></td>
+                                <td><input type="hidden" name="CodeCustomer" value="@Session["IDCus"]" required /></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;"> Khách hàng : </td>
+                                <td><input type="text" name="NameCustomer" value="@Session["NameCus"]" required /></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;"> Điện thoại : </td>
+                                <td><input type="text" name="PhoneCustomer" value="@Session["PhoneCus"]" required /></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;"> Địa chỉ giao hàng : </td>
+                                <td> <input type="text" name="AddressDeliverry" value="@Session["AddressDelivery"]" required /></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    @if (Session["UserName"] == null)
+                                    {
+                                        <a href="@Url.Action("LoginCus", "Customers")" class="btn btn-primary">Đăng nhập</a>
+                                        <span>(Hãy đăng nhập trước)</span>
+                                     }
+                                    <br />
+                                    <input type="submit" value="Thanh toán" class="btn-paid" />
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </td>
+
+                    <td colspan="3">
+                    </td>
+                </tr>
+
+
+        </tfoot>
+    </table>
+}
+else
+{
+    <h4>Giỏ hàng rỗng ! Xin mời tiếp tục mua hàng</h4>
+}
+
+

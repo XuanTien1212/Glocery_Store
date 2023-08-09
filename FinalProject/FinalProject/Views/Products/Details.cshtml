@@ -1,0 +1,95 @@
+﻿@model FinalProject.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    dt {
+        float: left;
+        height: 40px;
+        font-weight: bold;
+    }
+    dd {
+        float: right;
+        height: 40px;
+    }
+    dl div {
+        width: 500px;
+        height: 40px;
+        margin: 0 460px
+    }
+</style>
+<hr />
+<h1 style="margin: 60px 0;">Thông tin sản phẩm</h1>
+<div>
+    <dl class="dl-horizontal">
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductID)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.NamePro)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NamePro)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.DescriptionPro)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DescriptionPro)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.NameCate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category.NameCate)
+            </dd>
+        </div>
+        <div style="height: 90px">
+            <dt>
+                @Html.DisplayNameFor(model => model.ImagePro)
+            </dt>
+
+            <dd style="height: 90px">
+                <img src="@Html.DisplayFor(model => model.ImagePro)" alt="" width="90px" height="90px">
+            </dd>
+        </div>
+    </dl>
+</div>
+<p style="margin-top: 30px">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

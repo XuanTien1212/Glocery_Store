@@ -1,0 +1,97 @@
+﻿@model IEnumerable<FinalProject.Models.Product>
+
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    td, th {
+        padding: 5px 10px;
+        border-collapse: collapse;
+        border: 2px solid lightgrey;
+        font-size: 14px
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%
+    }
+</style>
+<hr />
+@if (Session["chon"] != null)
+{
+    if (Session["chon"].ToString() == "Admin")
+    {
+        Html.RenderAction("menuPartial", "LoginUser");
+    }
+}
+
+
+<h1 style="text-align:left">Quản lý sản phẩm</h1>
+
+<p style="text-align:left;margin-bottom: 30px;">
+    @Html.ActionLink("Thêm sản phẩm mới", "Create")
+    <span style="float:right;">
+        @Html.ActionLink("Chi tiết đơn hàng", "Index", "OrderProes")
+    </span>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã sản phẩm
+        </th>
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Giá sản phẩm
+        </th>
+        <th>
+            Ảnh
+        </th>
+        <th>
+            Mô tả
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Phân loại
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        double proprice = item.Price;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NamePro)
+            </td>
+            <td>
+                @proprice.ToString("#,###").Replace(',', '.')
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.ImagePro)" alt="" width="20px" height="20px">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescriptionPro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.NameCate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+            </td>
+        </tr>
+    }
+</table>
+@Scripts.Render("~/bundles/modernizr")

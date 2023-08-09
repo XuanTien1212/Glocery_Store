@@ -1,0 +1,13 @@
+/* FOOTER */
+.footer {
+    margin-top: 10px;
+    min-height: 400px;
+    background-color: blue;
+}
+
+.footer-item {
+    display: flex;
+    min-width: 1200px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.267);
+}

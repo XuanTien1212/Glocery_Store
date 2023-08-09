@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Trang chủ";
+}
+
+<div class="ads-content">
+    <!--  -->
+    <div class="above-img">
+        <img class="left-img" src="~/Content/image/pic1.jpg" alt="">
+        <img class="right-img" src="~/Content/image/pic4.png" alt="">
+    </div>
+    <!-- SLIDESHOW IMAGE -->
+    <div class="below-img">
+        <a href="https://www.circlek.com.vn/vi/thuc-an-thuc-uong/thuc-an/?c=mi-tron"><img id="slideshow-img-1" class="slideshow-img" src="~/Content/image/1.jpg" alt=""></a>
+        <a href="https://www.circlek.com.vn/vi/uu-dai-dac-biet/?l=tp-ho-chi-minh-1"><img class="slideshow-img" src="~/Content/image/3.jpg" alt=""></a>
+        <a href="https://www.ministop.vn/new-product"><img class="slideshow-img" src="~/Content/image/anh4.jpg" alt=""></a>
+        <a href="https://gs25.com.vn/en/san-pham/product/"><img class="slideshow-img" src="~/Content/image/adv2.png" alt=""></a>
+        <button class="btn-prev" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="btn-next" onclick="plusDivs(1)">&#10095;</button>
+        <div style="text-align:center;">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+    </div>
+</div>

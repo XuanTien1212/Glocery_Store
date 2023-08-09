@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Website bán hàng</title>
+    <link rel="stylesheet" href="~/Content/PageLayoutSS/styles.css" />
+    <link rel="stylesheet" href="~/Content/PageLayoutSS/hd-style.css" />
+    <link rel="stylesheet" href="~/Content/PageLayoutSS/m-style.css" />
+    <link rel="stylesheet" href="~/Content/PageLayoutSS/foot-style.css" />
+    <link rel="stylesheet" href="~/Content/PageLayoutSS/popup-style.css" />
+    <style>
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .searchbar-logo {
+            width: 400px;
+            height: 225px;
+
+        }
+        .searchbar-logo img {
+            width: 400px;
+            height: 225px;
+            cursor: default;
+            opacity: .4;
+        }
+    </style>
+</head>
+<body>
+    <div class="header myPage-section">
+        <div class="link-bar">
+            <ul>
+                <li style="float: left">
+                    @if (Session["NameUser"] == null)
+                    {
+                        <a href="~/LoginUser/Index">Đăng nhập</a>
+                    }
+
+                </li>
+                <li style="float: right; padding: 4px 5px;">
+                    @if (Session["NameUser"] == null)
+                    {
+                        <span></span>
+                    }
+                    else
+                    {
+                        <span style="color: var(--main-color-04); font-weight: bold;"><text>Xin chào Quản lý </text> @Session["NameUser"],</span>
+                    }
+                </li>
+                <li style="flex:40%"></li>
+                <li>
+                    <a style="float: right;" href="~/LoginUser/LogOutUser">
+                        <span class="glyphicon glyphicon-log-out"></span> Đăng xuất (Về trang chủ)
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="search-bar">
+            <div class="search-bar_item" style=" z-index: -999;">
+                <div class="searchbar-logo">
+                    <img src="~/Content/image/Logo.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main myPage-section" style="padding: 10px 0;">
+        <div id="main-item" class="main-item">
+            @RenderBody()
+        </div>
+    </div>
+    <div class="footer myPage-section">
+        <div class="footer-content">
+            <div class="footer-item footer-item-1 ">
+                <h3>GIỚI THIỆU</h3>
+                <h5>CỬA HÀNG TẠP HÓA</h5>
+                <ul>
+                    <li>
+                        - Tại đây chúng mình có những sản phẩm với giá ưu đãi phù hợp với mọi người
+                    </li>
+                    <li>
+                        - Trang mua hàng uy tín chất lượng được nhiều bạn trẻ sinh viên tin dùng.
+                    </li>
+                </ul>
+                <h5>LIÊN HỆ TỔNG ĐÀI (Miễn phí): </h5>
+                <ul>
+                    <li>
+                        - Gọi mua hàng: <span style="font-weight: bold;">1800 1234</span>
+                    </li>
+                    <li>
+                        - Chăm sóc khách hàng: <span style="font-weight: bold;">1800 5678</span>
+                    </li>
+                </ul>
+                <p>&#169; Trang web được làm bởi nhóm 5 Trường Đại học Ngoại Ngữ - Tin Học TPHCM (HUFLIT)</p>
+            </div>
+            <div class="footer-item footer-item-2 ">
+                <h3>HỆ THỐNG CỬA HÀNG</h3>
+                <h5>CHI NHÁNH HCM (Làm việc từ 8h00 - 21h00)</h5>
+                <ul>
+                    <li>
+                        <span style="font-weight: bold;">- Địa chỉ 1:</span> 828 Sư Vạn Hạnh, Phường 12, Quận 10.
+                    </li>
+                    <li>
+                        <span style="font-weight: bold;">- Địa chỉ 2:</span> M4-M7-M8 Thất Sơn, Cư xá Bắc Hải, Phường 15, Quận 10.
+                    </li>
+                    <li>
+                        <span style="font-weight: bold;">- Địa chỉ 3:</span> 32 Trường Sơn, Phường 2, Quận Tân Bình.
+                    </li>
+                    <li>
+                        <span style="font-weight: bold;">- Địa chỉ 4:</span> 298-304 Cao Thắng, Phường 12, Quận 10.
+                    </li>
+                    <li>
+                        <span style="font-weight: bold;">- Địa chỉ 5:</span> 10 Quốc lộ 22, Xã Tân Xuân, Huyện Hóc Môn.
+                    </li>
+                </ul>
+                <h5>SOCIAL MEDIA</h5>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <div class="social-media">
+                    <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+                    <a href="https://twitter.com/" class="fa fa-twitter"></a>
+                    <a href="https://www.youtube.com/" class="fa fa-youtube"></a>
+                </div>
+            </div>
+            <div class="footer-item footer-item-3 ">
+                <h3>THANH TOÁN MIỄN PHÍ</h3>
+                <ul>
+                    <li>
+                        <img src="~/Content/image/vnpay.jpg" />
+                        <img src="~/Content/image/mastercard.jpg" />
+                        <img src="~/Content/image/zalopay.jpg" />
+                    </li>
+                    <li>
+                        <img src="~/Content/image/momo.png" style="width: 60px;" />
+                        <img src="~/Content/image/samsungpay.png" style="width: 175px;" />
+                        <img src="~/Content/image/visacard.png" style="width: 80px;" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/Login-Signup Function.js"></script>
+    <script src="~/Scripts/Script.js"></script>
+</body>
+</html>
+@RenderSection("OverrideStyles", false)

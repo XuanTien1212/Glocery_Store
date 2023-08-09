@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Website bán hàng</title>
+    <link rel="stylesheet" href="~/Content/PageLayoutSS/styles.css" />
+    <link rel="stylesheet" href="~/Content/PageLayoutSS/hd-style.css" />
+    <link rel="stylesheet" href="~/Content/PageLayoutSS/m-style.css" />
+    <link rel="stylesheet" href="~/Content/PageLayoutSS/foot-style.css" />
+    <link rel="stylesheet" href="~/Content/PageLayoutSS/popup-style.css" />
+    <style>
+        /* Kiểu cho container productDropdown */
+        #productDropdown {
+            position: relative;
+        }
+
+        /* Kiểu cho nội dung dropdown */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 150px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            left: 0;
+            top: 100%; /* Hiển thị dropdown bên dưới chữ "Sản phẩm" */
+        }
+
+        /* Kiểu cho bảng danh sách loại sản phẩm trong dropdown */
+        .category-table {
+            width: 100%;
+            border-collapse: collapse;
+            display: flex; /* Sử dụng Flexbox */
+            flex-direction: column; /* Xếp các phần tử con theo chiều dọc */
+        }
+
+            /* Kiểu cho từng hàng trong bảng danh sách loại sản phẩm */
+            .category-table tr {
+                border-bottom: 1px solid #ddd;
+                flex: 1; /* Cân bằng chiều cao của các hàng */
+            }
+
+            /* Kiểu cho từng ô trong bảng danh sách loại sản phẩm */
+            .category-table td {
+                padding: 8px;
+                text-align: left; /* Căn lề văn bản sang trái */
+            }
+
+        /* Hiển thị nội dung dropdown khi hover vào container productDropdown */
+        #productDropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+    <div class="header myPage-section">
+        <div class="link-bar">
+            <ul>
+                <li style="float: left">
+                    @Html.ActionLink("Trang chủ", "Index", "Home")
+                </li>
+                <li style="float: right">
+                    <div id="productDropdown">
+                        @Html.ActionLink("Sản phẩm", "ProductList", "Products")
+                        <div class="dropdown-content">
+                            @Html.Action("CategoryList", "Categories")
+                        </div>
+                    </div>
+                </li>
+                <li style="float: left">
+                    @if (Session["UserName"] == null)
+                    {
+                        <a href="~/Customers/LoginCus">Đăng nhập</a>
+                    }
+                </li>
+                <li style="float: left">
+                    @if (Session["UserName"] == null)
+                    {
+                        <a href="~/Customers/Create">Đăng ký</a>
+                    }
+                </li>
+                <li style="float: right; padding: 4px 5px;">
+                    @if (Session["UserName"] == null)
+                    {
+                        <span></span>
+                    }
+                    else
+                    {
+                        <span style="color: var(--main-color-04); font-weight: bold;"><text>Hello </text>@Session["UserName"],</span>
+                    }
+                </li>
+                <li style="flex:40%"></li>
+                <li>
+                    <a style="float: right;" href="~/LoginUser/LogOutUser">
+                        <span class="glyphicon glyphicon-log-out"></span> Đăng xuất
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="search-bar">
+            <div class="search-bar_item">
+                <div class="searchbar-logo">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="~/Content/image/Logo1.jpg" alt="">
+                    </a>
+                </div>
+                <div class="searchbar-input" style="z-index: 999;">
+                    @using (Html.BeginForm("ProductList", "Products", FormMethod.Get))
+                    {
+                        <input type="text" name="SearchString" placeholder="Search..." class="search-box__input">
+                        <div class="searching-icon">
+                            <button type="submit" value="Tìm kiếm" class="search-box__button"><img src="~/Content/image/search-icon.png" alt=""></button>
+                        </div>
+                        <div class="search-price">
+                            <label>Đơn giá từ: </label><input type="number" name="min" min="0" value="" step="1000" />
+                            <label style="width: 50px;">Đến: </label><input type="number" name="max" max="50000000" min="0" value="" step="10000" />
+                        </div>
+                    }
+                </div>
+                <div class="cart-total">
+                    @Html.Action("BagCart", "ShoppingCart")
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main myPage-section" style="padding: 10px 0;">
+        <div id="main-item" class="main-item">
+            @RenderBody()
+        </div>
+    </div>
+    <div class="footer myPage-section">
+        <div class="footer-content">
+            <div class="footer-item footer-item-1 ">
+                <h3>GIỚI THIỆU</h3>
+                <h5>CỬA HÀNG TẠP HÓA</h5>
+                <ul>
+                    <li>
+                        - Tại đây chúng mình có những sản phẩm với giá ưu đãi phù hợp với mọi người.
+                    </li>
+                    <li>
+                        - Trang mua hàng uy tín chất lượng được nhiều bạn trẻ sinh viên tin dùng.
+                    </li>
+                </ul>
+                <h5>LIÊN HỆ TỔNG ĐÀI (Miễn phí): </h5>
+                <ul>
+                    <li>
+                        - Gọi mua hàng: <span style="font-weight: bold;">1800 1234</span>
+                    </li>
+                    <li>
+                        - Chăm sóc khách hàng: <span style="font-weight: bold;">1800 5678</span>
+                    </li>
+                </ul>
+                <p>&#169; Trang web được làm bởi nhóm 5 Trường Đại học Ngoại Ngữ - Tin Học TPHCM (HUFLIT)</p>
+            </div>
+            <div class="footer-item footer-item-2 ">
+                <h3>HỆ THỐNG CỬA HÀNG</h3>
+                <h5>CHI NHÁNH HCM (Làm việc từ 8h00 - 21h00)</h5>
+                <ul>
+                    <li>
+                        <span style="font-weight: bold;">- Địa chỉ 1:</span> 828 Sư Vạn Hạnh, Phường 12, Quận 10.
+                    </li>
+                    <li>
+                        <span style="font-weight: bold;">- Địa chỉ 2:</span> M4-M7-M8 Thất Sơn, Cư xá Bắc Hải, Phường 15, Quận 10.
+                    </li>
+                    <li>
+                        <span style="font-weight: bold;">- Địa chỉ 3:</span> 32 Trường Sơn, Phường 2, Quận Tân Bình.
+                    </li>
+                    <li>
+                        <span style="font-weight: bold;">- Địa chỉ 4:</span> 298-304 Cao Thắng, Phường 12, Quận 10.
+                    </li>
+                    <li>
+                        <span style="font-weight: bold;">- Địa chỉ 5:</span> 10 Quốc lộ 22, Xã Tân Xuân, Huyện Hóc Môn.
+                    </li>
+                </ul>
+                <h5>SOCIAL MEDIA</h5>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <div class="social-media">
+                    <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+                    <a href="https://twitter.com/" class="fa fa-twitter"></a>
+                    <a href="https://www.youtube.com/" class="fa fa-youtube"></a>
+                </div>
+            </div>
+            <div class="footer-item footer-item-3 ">
+                <h3>THANH TOÁN MIỄN PHÍ</h3>
+                <ul>
+                    <li>
+                        <img src="~/Content/image/vnpay.jpg" />
+                        <img src="~/Content/image/mastercard.jpg" />
+                        <img src="~/Content/image/zalopay.jpg" />
+                    </li>
+                    <li>
+                        <img src="~/Content/image/momo.png" style="width: 60px;" />
+                        <img src="~/Content/image/samsungpay.png" style="width: 175px;" />
+                        <img src="~/Content/image/visacard.png" style="width: 80px;" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/Login-Signup Function.js"></script>
+    <script>
+        // Lấy thẻ div chứa danh sách loại sản phẩm
+        var productDropdown = document.getElementById("productDropdown");
+
+        // Lấy thẻ chứa danh sách loại sản phẩm
+        var dropdownContent = productDropdown.querySelector(".dropdown-content");
+
+        // Hiển thị danh sách loại sản phẩm khi đưa chuột vào thẻ "Sản phẩm"
+        productDropdown.addEventListener("mouseenter", function () {
+            dropdownContent.style.display = "block";
+        });
+
+        // Ẩn danh sách loại sản phẩm khi chuột rời khỏi thẻ "Sản phẩm"
+        productDropdown.addEventListener("mouseleave", function () {
+            dropdownContent.style.display = "none";
+        });
+    </script>
+
+</body>
+</html>
+@RenderSection("OverrideStyles", false)

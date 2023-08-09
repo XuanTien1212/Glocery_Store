@@ -1,0 +1,57 @@
+﻿@model List<FinalProject.Models.Category>
+
+<style>
+    /* Kiểu cho container productDropdown */
+    #productDropdown {
+        position: relative;
+    }
+
+    /* Kiểu cho nội dung dropdown */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 150px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        left: 0;
+        top: 100%; /* Hiển thị dropdown bên dưới chữ "Sản phẩm" */
+    }
+
+    /* Kiểu cho bảng danh sách loại sản phẩm trong dropdown */
+    .category-table {
+        width: 100%;
+        border-collapse: collapse;
+        display: flex; /* Sử dụng Flexbox */
+        flex-direction: column; /* Xếp các phần tử con theo chiều dọc */
+    }
+
+        /* Kiểu cho từng hàng trong bảng danh sách loại sản phẩm */
+        .category-table tr {
+            border-bottom: 1px solid #ddd;
+            flex: 1; /* Cân bằng chiều cao của các hàng */
+        }
+
+        /* Kiểu cho từng ô trong bảng danh sách loại sản phẩm */
+        .category-table td {
+            padding: 8px;
+            text-align: left; /* Căn lề văn bản sang trái */
+        }
+
+    /* Hiển thị nội dung dropdown khi hover vào container productDropdown */
+    #productDropdown:hover .dropdown-content {
+        display: block;
+    }
+</style>
+<table class="category-table">
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>
+                    <a class="dropdown-item" href="@Url.Action("ProductList", "Products", new { categoryId = category.IDCate })">@category.NameCate</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

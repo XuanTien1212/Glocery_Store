@@ -1,0 +1,28 @@
+/* FOR ALL SECTION */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.myPage-section {
+    width: 1400px;
+    margin: auto;
+}
+
+:root {
+    --main-color-01: #14171c;
+    --main-color-02: #EEEEEE;
+    --main-color-03: rgba(0, 0, 0, .3);
+    --main-color-04: #00ADB5;
+    --main-color-05: #ED1C24;
+    --main-color-06: #2666CF;
+    --main-color-07: #FFFFFF;
+}
+
+a {
+    text-decoration: none;
+}
+
+::placeholder {
+    opacity: 0.6;
+}

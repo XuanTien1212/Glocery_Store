@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="afa6611358ed4674bffc3a202245808b" Name="Diagram1">
+        <EntityTypeShape EntityType="DBEcommerceWebModel.Category" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEcommerceWebModel.Customer" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEcommerceWebModel.OrderDetail" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEcommerceWebModel.OrderPro" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEcommerceWebModel.Product" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEcommerceWebModel.ProductBrand" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="DBEcommerceWebModel.FK_Brand_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEcommerceWebModel.FK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEcommerceWebModel.FK__OrderPro__IDCus__2630A1B7" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEcommerceWebModel.FK__OrderDeta__IDOrd__384F51F2" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEcommerceWebModel.FK_OrderDetail_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEcommerceWebModel.FK_Product_Brand" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBEcommerceWebModel.Discount" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="DBEcommerceWebModel.AdminUser" Width="1.5" PointX="7.375" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

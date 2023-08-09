@@ -1,0 +1,80 @@
+﻿@model IEnumerable<FinalProject.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    td, th {
+        padding: 5px 10px;
+        border-collapse: collapse;
+        border: 2px solid lightgrey;
+        font-size: 16px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%
+    }
+</style>
+<hr />
+@if (Session["chon"].ToString() == "Admin")
+{
+    Html.RenderAction("menuPartial", "LoginUser");
+}
+
+<h1 style="margin: 60px 0;">Quản lý thông tin khách hàng</h1>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NameCus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneCus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailCus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddressDelivery)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameCus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneCus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailCus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressDelivery)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IDCus }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IDCus }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDCus })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,36 @@
+﻿@model FinalProject.Models.AdminUser
+
+@{
+    ViewBag.Title = "RegisterUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+        font-size: 12px;
+    }
+
+    form {
+        margin: auto;
+        width: 300px;
+        padding: 10px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+    .admin-decent p {
+        margin: 10px;
+    }
+
+    .btn-save {
+        padding: 4px 16px;
+    }
+</style>
+<hr />
+@{ Html.RenderAction("menuPartial", "LoginUser");}
+<br />
+
+
+

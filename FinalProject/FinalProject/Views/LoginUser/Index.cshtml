@@ -1,0 +1,103 @@
+﻿@model FinalProject.Models.AdminUser
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    table {
+        height: 300px;
+        margin: auto;
+        margin-top: 40px;
+        border: 3px solid gray;
+        border-collapse: collapse;
+    }
+
+    td {
+        height: 20px;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.233)
+    }
+
+    input {
+        line-height: 22px;
+        width: 250px;
+    }
+
+    #show_message {
+        margin: 0;
+        font-style: italic;
+    }
+
+    .sbj-col {
+        width: 200px;
+        font-weight: bold;
+    }
+
+    .input-col {
+        width: 250px;
+    }
+
+    .message-content {
+        font-style: italic;
+        text-align: left;
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+    .message-content {
+        color: red;
+    }
+    .admin-login {
+        float: left;
+        padding: 10px 12px;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+        background: var(--main-color-06);
+        color: var(--main-color-02);
+        cursor: pointer;
+    }
+    .admin-login:active {
+        opacity: 0.8;
+    }
+</style>
+<hr />
+
+
+@using (Html.BeginForm("LoginAccount", "LoginUser"))
+{
+
+    @Html.AntiForgeryToken()
+    <table>
+        <caption>
+            <h2>ĐĂNG NHẬP ADMIN</h2>
+            @if (ViewBag.ErrorInfo != null)
+            {
+                <p>(@ViewBag.ErrorInfo)</p>
+            }
+        </caption>
+        <tbody>
+            <tr>
+                <td class="sbj-col">@Html.LabelFor(model => model.NameUser)</td>
+                <td class="input-col">@Html.TextBoxFor(model => model.NameUser, new { style = "filed-validation-error" })</td>
+                <td class="message-content">@Html.ValidationMessageFor(model => model.NameUser)</td>
+            </tr>
+            <tr>
+                <td class="sbj-col">@Html.LabelFor(model => model.RoleUser)</td>
+                <td class="input-col">@Html.TextBoxFor(model => model.RoleUser, new { style = "filed-validation-error" })</td>
+                <td class="message-content">@Html.ValidationMessageFor(model => model.RoleUser)</td>
+            </tr>
+            <tr>
+                <td class="sbj-col">@Html.LabelFor(model => model.PasswordUser)</td>
+                <td class="input-col">@Html.EditorFor(model => model.PasswordUser)</td>
+                <td class="message-content">@Html.ValidationMessageFor(model => model.PasswordUser)</td>
+            </tr>
+            <tr id="login-btn" colspan="3">
+                <td class="sbj-col"></td>
+                <td class="input-col">
+                    <button type="submit" value="Login" class="admin-login">Đăng nhập</button>
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+}

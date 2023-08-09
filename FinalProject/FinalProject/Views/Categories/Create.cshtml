@@ -1,0 +1,63 @@
+﻿@model FinalProject.Models.Category
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    label {
+        float: left;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin: 20px;
+        height: 20px;
+    }
+
+    input {
+        float: right;
+        box-sizing: border-box;
+    }
+
+    select {
+        width: 177px;
+    }
+</style>
+<hr />
+<h1>Create</h1>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal" style="text-align: center; width: 350px; height: 400px; margin: 0 525px; padding-top: 20px;">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label>Mã loại</label> 
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IDCate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IDCate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Loại sản phẩm</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NameCate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NameCate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="padding: 0 115px;">
+            <div class="col-md-offset-2 col-md-10" style="text-align:center">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
